@@ -27,6 +27,8 @@ public class Almacen implements Serializable{
     
     @NotNull
     private String nombre;
+    @NotNull
+    private String ubicacion;
 
     public Long getId() {
         return id;
@@ -43,5 +45,14 @@ public class Almacen implements Serializable{
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+    public String getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(String ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+    
     
 }

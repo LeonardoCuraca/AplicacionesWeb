@@ -26,9 +26,11 @@ public class Producto {
     @NotNull
     private Double precio;
     @NotNull
-    private Long almacen;
+    private Integer cantidad;
     @NotNull
-    private Long proveedor;
+    private String almacen;
+    @NotNull
+    private String proveedor;
 
     public Long getId() {
         return id;
@@ -54,19 +56,27 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Long getAlmacen() {
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public String getAlmacen() {
         return almacen;
     }
 
-    public void setAlmacen(Long almacen) {
+    public void setAlmacen(String almacen) {
         this.almacen = almacen;
     }
 
-    public Long getProveedor() {
+    public String getProveedor() {
         return proveedor;
     }
 
-    public void setProveedor(Long proveedor) {
+    public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
     

@@ -11,10 +11,14 @@
 				<div class="card-header" ></div>
 				<div class="card-body">
 				<h3 th:if="ERROR!=null" th:text="${ERROR}" style="color:red"></h3>
-					<form th:action="@{/almacenes/insertar}" th:object="${venta}" method="POST">
+					<form th:action="@{/almacenes/insertar}" th:object="${almacen}" method="POST">
 						<div class="form-group">
-							<label for="nombre">Cantidad</label>
+							<label for="nombre">Nombre</label>
 							<input type="text" class="form-control" th:field="*{nombre}" name="nombre">
+						</div>
+                                                <div class="form-group">
+							<label for="ubicacion">Ubicación</label>
+							<input type="text" class="form-control" th:field="*{ubicacion}" name="ubicacion">
 						</div>
 						<input type="submit" th:value="${btn}" class="btn btn-primary">
 					</form>

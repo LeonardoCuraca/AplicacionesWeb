@@ -30,7 +30,7 @@ public class ProveedorController {
 	@RequestMapping("/listar")
 	public String listar (Model model ) {
 		List<Proveedor> proveedor =proveedorService.listar();
-		model.addAttribute("proveedor",proveedor);
+		model.addAttribute("proveedores",proveedor);
 		model.addAttribute("titulo","Lista de Clientes");
 		return "proveedorListar";
 	}

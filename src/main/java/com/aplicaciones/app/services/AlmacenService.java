@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.aplicaciones.app.models.Almacen;
 import com.aplicaciones.app.repositories.IAlmacen;
 
-@Service("venta")
+@Service("almacen")
 public class AlmacenService {
 
 	@Autowired

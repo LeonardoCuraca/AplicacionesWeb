@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.aplicaciones.app.models.Proveedor;
 import com.aplicaciones.app.repositories.IProveedor;
 
-@Service("cliente")
+@Service("proveedor")
 public class ProveedorService{
 	
 	@Autowired

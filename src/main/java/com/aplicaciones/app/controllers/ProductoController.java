@@ -49,8 +49,8 @@ public class ProductoController {
 	public String formulario (Map<String, Object> model) {
 		Producto producto = new Producto();
 		model.put("producto",producto);
-                model.put("almacen", almacenService.listar());
-		model.put("proveedor", proveedorService.listar());
+                model.put("almacenes", almacenService.listar());
+		model.put("proveedores", proveedorService.listar());
 		model.put("btn", "Crear Producto");
 		return "productoForm";
 	}
@@ -58,8 +58,8 @@ public class ProductoController {
 	@RequestMapping("/form/{id}")
 	public String actualizar (@PathVariable("id") Long id,Model model) {
 		model.addAttribute("producto",productoService.buscar(id));
-                model.addAttribute("almacen", almacenService.listar());
-		model.addAttribute("proveedor", proveedorService.listar());
+                model.addAttribute("almacenes", almacenService.listar());
+		model.addAttribute("proveedores", proveedorService.listar());
 		model.addAttribute("btn","Actualiza Registro");
 		return "productoForm";
 	}
