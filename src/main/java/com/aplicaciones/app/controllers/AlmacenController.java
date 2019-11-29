@@ -29,7 +29,7 @@ public class AlmacenController {
 	public String listar(Model model) {
 		List<Almacen> almacenes = almacenService.listar();
 		model.addAttribute("almacenes",almacenes);
-		model.addAttribute("titulo","Lista de Ventas");
+		model.addAttribute("titulo","Lista de Almacenes");
 		return "almacenListar";
 	}
 	
@@ -51,8 +51,8 @@ public class AlmacenController {
 			model.addAttribute("btn","Crear Almacen");
 			return "almacenForm";
 		}else {
-		almacenService.guardar(almacen);
-		return "redirect:/almacenes/listar";
+                    almacenService.guardar(almacen);
+                    return "redirect:/almacenes/listar";
 		}
 	}
 	

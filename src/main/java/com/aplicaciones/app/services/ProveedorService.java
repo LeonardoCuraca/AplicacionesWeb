@@ -33,9 +33,6 @@ public class ProveedorService{
 		} catch (Exception e) {
 			// TODO: handle exception
 			return false;
-		}
-		
+		}	
 	}
-
-	
 }
