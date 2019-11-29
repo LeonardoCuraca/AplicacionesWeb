@@ -16,15 +16,26 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aplicaciones.app.models.Producto;
+import com.aplicaciones.app.services.AlmacenService;
 import com.aplicaciones.app.services.ProductoService;
+import com.aplicaciones.app.services.ProveedorService;
 
 @Controller
 @RequestMapping("/productos")
 @SessionAttributes("producto")
 public class ProductoController {
 	@Autowired
+	@Qualifier("almacen")
+	AlmacenService almacenService;
+	
+	@Autowired
+	@Qualifier("proveedor")
+	ProveedorService proveedorService;
+	
+	@Autowired
 	@Qualifier("producto")
 	ProductoService productoService;
+	
 	
 	@RequestMapping("/listar")
 	public String listar(Model model) {
@@ -38,6 +49,8 @@ public class ProductoController {
 	public String formulario (Map<String, Object> model) {
 		Producto producto = new Producto();
 		model.put("producto",producto);
+                model.put("almacen", almacenService.listar());
+		model.put("proveedor", proveedorService.listar());
 		model.put("btn", "Crear Producto");
 		return "productoForm";
 	}
@@ -45,6 +58,8 @@ public class ProductoController {
 	@RequestMapping("/form/{id}")
 	public String actualizar (@PathVariable("id") Long id,Model model) {
 		model.addAttribute("producto",productoService.buscar(id));
+                model.addAttribute("almacen", almacenService.listar());
+		model.addAttribute("proveedor", proveedorService.listar());
 		model.addAttribute("btn","Actualiza Registro");
 		return "productoForm";
 	}

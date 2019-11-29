@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.aplicaciones.app.models.Almacen;
-import com.aplicaciones.app.services.ProveedorService;
-import com.aplicaciones.app.services.ProductoService;
 import com.aplicaciones.app.services.AlmacenService;
 import org.springframework.validation.BindingResult;
 
@@ -25,15 +23,7 @@ import org.springframework.validation.BindingResult;
 public class AlmacenController {
 	@Autowired
 	@Qualifier("almacen")
-	AlmacenService almacenService;
-	
-	@Autowired
-	@Qualifier("proveedor")
-	ProveedorService proveedorService;
-	
-	@Autowired
-	@Qualifier("producto")
-	ProductoService productoService;
+	AlmacenService almacenService;	
 	
 	@RequestMapping("/listar")
 	public String listar(Model model) {
@@ -47,11 +37,10 @@ public class AlmacenController {
 	public String formulario(Model model) {
 		Almacen almacen= new Almacen();
 		model.addAttribute("almacen", almacen);
-		model.addAttribute("productos", productoService.listar());
-		model.addAttribute("proveedor", proveedorService.listar());
 		model.addAttribute("btn", "Registrar en el Almacen");
 		return "almacenForm";
 	}
+        
 	@RequestMapping(value="/insertar",method=RequestMethod.POST)
 	public String guardar(@Valid Almacen almacen,BindingResult result, Model model) {
 		
@@ -60,7 +49,7 @@ public class AlmacenController {
                         almacen = new Almacen();
 			model.addAttribute("Almacen",almacen);
 			model.addAttribute("btn","Crear Almacen");
-			return "productoForm";
+			return "almacenForm";
 		}else {
 		almacenService.guardar(almacen);
 		return "redirect:/almacenes/listar";
@@ -70,8 +59,6 @@ public class AlmacenController {
 	@RequestMapping("/form/{id}")
 	public String actualizar (@PathVariable("id") Long id,Model model) {
 		model.addAttribute("almacen",almacenService.buscar(id));
-		model.addAttribute("productos", productoService.listar());
-		model.addAttribute("proveedor", proveedorService.listar());
 		model.addAttribute("btn","Actualiza Registro");
 		return "almacenForm";
 	}
