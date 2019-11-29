@@ -14,62 +14,61 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.aplicaciones.app.models.Proveedor;
 import com.aplicaciones.app.services.ProveedorService;
 
 @Controller
-@RequestMapping("/clientes")
-@SessionAttributes("cliente")
+@RequestMapping("/proveedores")
+@SessionAttributes("proveedor")
 public class ProveedorController {
 	
 	@Autowired
-	@Qualifier("cliente")
-	ProveedorService clienteService;
+	@Qualifier("proveedor")
+	ProveedorService proveedorService;
 	
 	@RequestMapping("/listar")
 	public String listar (Model model ) {
-		List<Proveedor> clientes =clienteService.listar();
-		model.addAttribute("clientes",clientes);
+		List<Proveedor> proveedor =proveedorService.listar();
+		model.addAttribute("proveedor",proveedor);
 		model.addAttribute("titulo","Lista de Clientes");
-		return "clienteListar";
+		return "proveedorListar";
 	}
 	
 	@RequestMapping("/form")
 	public String formulario (Map<String, Object> model) {
 
-		Proveedor cliente = new Proveedor();
-		model.put("cliente",cliente);
-		model.put("btn", "Crear Cliente");
-		return "clienteForm";
+		Proveedor proveedor = new Proveedor();
+		model.put("proveedor",proveedor);
+		model.put("btn", "Crear proveedor");
+		return "proveedorForm";
 	}
 	
 	@RequestMapping("/form/{id}")
 	public String actualizar (@PathVariable("id") Long id,Model model) {
-		model.addAttribute("cliente",clienteService.buscar(id));
+		model.addAttribute("proveedor",proveedorService.buscar(id));
 		model.addAttribute("btn","Actualiza Registro");
-		return "clienteForm";
+		return "proveedorForm";
 	}
 	
 	@RequestMapping(value="/insertar" ,method=RequestMethod.POST )
-	public String guardar(@Valid Proveedor cliente,BindingResult result,Model model) {
+	public String guardar(@Valid Proveedor proveedor,BindingResult result,Model model) {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("ERROR","Error al enviar registro");
-			cliente = new Proveedor();
-			model.addAttribute("cliente",cliente);
-			model.addAttribute("btn", "Crear Cliente");
-			return "clienteForm";
+			proveedor = new Proveedor();
+			model.addAttribute("proveedor",proveedor);
+			model.addAttribute("btn", "Crear Proveedor");
+			return "proveedorForm";
 		}else {
-		clienteService.guardar(cliente);
-		return "redirect:/clientes/listar";
+		proveedorService.guardar(proveedor);
+		return "redirect:/proveedores/listar";
 		}
 	}
 	
 	@RequestMapping("/eliminar/{id}")
 	public String eliminar(@PathVariable("id") Long id) {
-		clienteService.eliminar(id);
-		return"redirect:/clientes/listar";
+		proveedorService.eliminar(id);
+		return"redirect:/proveedores/listar";
 	}	
 }
